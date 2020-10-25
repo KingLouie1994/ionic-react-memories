@@ -9,14 +9,27 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonText,
+  IonButtons,
+  IonBackButton,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonButton,
+  IonIcon,
 } from "@ionic/react";
+
+import { camera } from "ionicons/icons";
+
+import "./NewMemory.css";
 
 const NewMemory: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/good-memories" />
+          </IonButtons>
           <IonTitle className="ion-text-center">Add New Memory</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -24,9 +37,26 @@ const NewMemory: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonText className="ion-text-center">
-                <h4>Here you'll enter new memories!</h4>
-              </IonText>
+              <IonItem>
+                <IonLabel position="floating">Memory Title</IonLabel>
+                <IonInput type="text"></IonInput>
+              </IonItem>
+            </IonCol>
+          </IonRow>
+          <IonRow className="ion-text-center">
+            <IonCol>
+              <div className="image-preview">
+                <h3>No photo chosen</h3>
+              </div>
+              <IonButton fill="clear">
+                <IonIcon icon={camera} slot="start"></IonIcon>
+                <IonLabel>Take Photo</IonLabel>
+              </IonButton>
+            </IonCol>
+          </IonRow>
+          <IonRow className="ion-margin-top">
+            <IonCol className="ion-text-center">
+              <IonButton>Add Memory</IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>

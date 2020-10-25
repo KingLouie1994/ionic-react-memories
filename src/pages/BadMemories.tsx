@@ -28,7 +28,7 @@ const BadMemories: React.FC = () => {
           <IonTitle className="ion-text-center">Bad Memories</IonTitle>
           {!isPlatform("android") && (
             <IonButtons slot="end">
-              <IonButton>
+              <IonButton routerLink="/new-memory">
                 <IonIcon slot="icon-only" icon={addOutline} color="red" />
               </IonButton>
             </IonButtons>
@@ -47,7 +47,7 @@ const BadMemories: React.FC = () => {
         </IonGrid>
         {isPlatform("android") && (
           <IonFab horizontal="end" vertical="bottom" slot="fixed">
-            <IonFabButton color="primary">
+            <IonFabButton color="primary" routerLink="/new-memory">
               <IonIcon icon={addOutline} />
             </IonFabButton>
           </IonFab>

@@ -15,7 +15,6 @@ import { Route, Redirect } from "react-router-dom";
 
 import { happyOutline, sadOutline } from "ionicons/icons";
 
-import Welcome from "./pages/Welcome";
 import BadMemories from "./pages/BadMemories";
 import GoodMemories from "./pages/GoodMemories";
 import NewMemory from "./pages/NewMemory";
@@ -44,9 +43,6 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet id="main">
-          <Route path="/welcome">
-            <Welcome />
-          </Route>
           <Route exact path="/good-memories">
             <GoodMemories />
           </Route>
@@ -56,7 +52,7 @@ const App: React.FC = () => (
           <Route exact path="/new-memory">
             <NewMemory />
           </Route>
-          <Redirect to="/welcome" />
+          <Redirect to="/good-memories" />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="good-memories" href="/good-memories">
