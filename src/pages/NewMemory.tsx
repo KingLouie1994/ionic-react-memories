@@ -20,9 +20,23 @@ import {
 
 import { camera } from "ionicons/icons";
 
+import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
+
 import "./NewMemory.css";
 
+const { Camera } = Plugins;
+
 const NewMemory: React.FC = () => {
+  const takePhotoHandler = async () => {
+    const photo = await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 80,
+      width: 500,
+    });
+    console.log(photo);
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -48,7 +62,7 @@ const NewMemory: React.FC = () => {
               <div className="image-preview">
                 <h3>No photo chosen</h3>
               </div>
-              <IonButton fill="clear">
+              <IonButton fill="clear" onClick={takePhotoHandler}>
                 <IonIcon icon={camera} slot="start"></IonIcon>
                 <IonLabel>Take Photo</IonLabel>
               </IonButton>
