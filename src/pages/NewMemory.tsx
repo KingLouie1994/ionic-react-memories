@@ -20,11 +20,18 @@ import {
 
 import { camera } from "ionicons/icons";
 
-import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
+import {
+  Plugins,
+  CameraResultType,
+  CameraSource,
+  FilesystemDirectory,
+} from "@capacitor/core";
+
+import { base64FromPath } from "@ionic/react-hooks/filesystem";
 
 import "./NewMemory.css";
 
-const { Camera } = Plugins;
+const { Camera, Filesystem } = Plugins;
 
 const NewMemory: React.FC = () => {
   const [takenPhoto, setTakenPhoto] = useState<{
@@ -46,6 +53,16 @@ const NewMemory: React.FC = () => {
     setTakenPhoto({
       path: photo.path,
       preview: photo.webPath,
+    });
+  };
+
+  const addMemoryHandler = async () => {
+    const fileName = new Date().getTime() + ".jpeg";
+    const base64 = await base64FromPath(takenPhoto!.preview);
+    Filesystem.writeFile({
+      path: fileName,
+      data: base64,
+      directory: FilesystemDirectory.Data,
     });
   };
 
