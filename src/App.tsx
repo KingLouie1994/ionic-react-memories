@@ -43,8 +43,8 @@ import "./theme/variables.css";
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <MemoriesContextProvider>
+      <MemoriesContextProvider>
+        <IonTabs>
           <IonRouterOutlet id="main">
             <Route exact path="/good-memories">
               <GoodMemories />
@@ -57,18 +57,18 @@ const App: React.FC = () => (
             </Route>
             <Redirect to="/good-memories" />
           </IonRouterOutlet>
-        </MemoriesContextProvider>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="good-memories" href="/good-memories">
-            <IonIcon icon={happyOutline} />
-            <IonLabel>Good Memories</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="bad-memories" href="/bad-memories">
-            <IonIcon icon={sadOutline} />
-            <IonLabel>Bad Memories</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="good-memories" href="/good-memories">
+              <IonIcon icon={happyOutline} />
+              <IonLabel>Good Memories</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="bad-memories" href="/bad-memories">
+              <IonIcon icon={sadOutline} />
+              <IonLabel>Bad Memories</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </MemoriesContextProvider>
     </IonReactRouter>
   </IonApp>
 );
