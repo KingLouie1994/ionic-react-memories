@@ -1,5 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 
+import { useHistory } from "react-router-dom";
+
 import {
   IonHeader,
   IonPage,
@@ -50,6 +52,8 @@ const NewMemory: React.FC = () => {
 
   const titleRef = useRef<HTMLIonInputElement>(null);
 
+  const history = useHistory();
+
   const selectMemoryTypeHandler = (event: CustomEvent) => {
     const selectedMemoryType = event.detail.value;
     setChosenMemoryType(selectedMemoryType);
@@ -93,6 +97,7 @@ const NewMemory: React.FC = () => {
     });
 
     memoriesCtx.addMemory(fileName, enteredTitle.toString(), chosenMemoryType);
+    history.length > 0 ? history.goBack() : history.replace("/good-memories");
   };
 
   return (

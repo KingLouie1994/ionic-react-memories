@@ -2,7 +2,7 @@ import React from "react";
 
 export interface Memory {
   id: string;
-  image: string;
+  path: string;
   title: string;
   type: "good" | "bad";
 }

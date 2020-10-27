@@ -16,6 +16,9 @@ import {
   IonText,
   IonFab,
   IonFabButton,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
 } from "@ionic/react";
 
 import { addOutline } from "ionicons/icons";
@@ -45,13 +48,27 @@ const GoodMemories: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonGrid>
-          <IonRow>
-            <IonCol>
-              <IonText className="ion-text-center">
-                <h4>Here you'll see the good memories!</h4>
-              </IonText>
-            </IonCol>
-          </IonRow>
+          {goodMemories.length <= 0 && (
+            <IonRow>
+              <IonCol className="ion-text-center">
+                <IonText>
+                  <h2>No good memories found</h2>
+                </IonText>
+              </IonCol>
+            </IonRow>
+          )}
+          {goodMemories.map((memory) => (
+            <IonRow key={memory.id}>
+              <IonCol>
+                <IonCard>
+                  <img src={memory.path} alt={memory.title} />
+                  <IonCardHeader>
+                    <IonCardTitle>{memory.title}</IonCardTitle>
+                  </IonCardHeader>
+                </IonCard>
+              </IonCol>
+            </IonRow>
+          ))}
         </IonGrid>
         {isPlatform("android") && (
           <IonFab horizontal="end" vertical="bottom" slot="fixed">

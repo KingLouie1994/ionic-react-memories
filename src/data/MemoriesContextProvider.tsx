@@ -5,7 +5,17 @@ import MemoriesContext, { Memory } from "./memories-context";
 const MemoriesContextProvider: React.FC = (props) => {
   const [memories, setMemories] = useState<Memory[]>([]);
 
-  const addMemory = () => {};
+  const addMemory = (path: string, title: string, type: "good" | "bad") => {
+    const newMemory: Memory = {
+      id: Math.random().toString(),
+      title,
+      type,
+      path,
+    };
+    setMemories((currentMemories) => {
+      return [...currentMemories, newMemory];
+    });
+  };
 
   return (
     <MemoriesContext.Provider
