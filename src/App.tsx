@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   IonApp,
   IonRouterOutlet,
@@ -19,6 +19,8 @@ import BadMemories from "./pages/BadMemories";
 import GoodMemories from "./pages/GoodMemories";
 import NewMemory from "./pages/NewMemory";
 
+import MemoriesContext from "./data/memories-context";
+
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -38,35 +40,45 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet id="main">
-          <Route exact path="/good-memories">
-            <GoodMemories />
-          </Route>
-          <Route exact path="/bad-memories">
-            <BadMemories />
-          </Route>
-          <Route exact path="/new-memory">
-            <NewMemory />
-          </Route>
-          <Redirect to="/good-memories" />
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="good-memories" href="/good-memories">
-            <IonIcon icon={happyOutline} />
-            <IonLabel>Good Memories</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="bad-memories" href="/bad-memories">
-            <IonIcon icon={sadOutline} />
-            <IonLabel>Bad Memories</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  const memoriesCtx = useContext(MemoriesContext);
+
+  const { initContext } = memoriesCtx;
+
+  useEffect(() => {
+    initContext();
+  }, [initContext]);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet id="main">
+            <Route exact path="/good-memories">
+              <GoodMemories />
+            </Route>
+            <Route exact path="/bad-memories">
+              <BadMemories />
+            </Route>
+            <Route exact path="/new-memory">
+              <NewMemory />
+            </Route>
+            <Redirect to="/good-memories" />
+          </IonRouterOutlet>
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="good-memories" href="/good-memories">
+              <IonIcon icon={happyOutline} />
+              <IonLabel>Good Memories</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="bad-memories" href="/bad-memories">
+              <IonIcon icon={sadOutline} />
+              <IonLabel>Bad Memories</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
