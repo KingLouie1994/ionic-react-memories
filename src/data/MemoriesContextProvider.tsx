@@ -54,7 +54,7 @@ const MemoriesContextProvider: React.FC = (props) => {
         title: storedMemory.title,
         type: storedMemory.type,
         path: storedMemory.path,
-        base64Url: "data:image/jpeg;base64" + file.data,
+        base64Url: "data:image/jpeg;base64," + file.data,
       });
     }
     setMemories(loadedMemories);
