@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import {
   IonHeader,
@@ -20,7 +20,16 @@ import {
 
 import { addOutline } from "ionicons/icons";
 
+import MemoriesContext from "../data/memories-context";
+
+import MemoriesList from "../components/MemoriesList";
+
 const BadMemories: React.FC = () => {
+  const memoriesCtx = useContext(MemoriesContext);
+
+  const badMemories = memoriesCtx.memories.filter(
+    (memory) => memory.type === "bad"
+  );
   return (
     <IonPage>
       <IonHeader>
@@ -36,14 +45,17 @@ const BadMemories: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <IonText className="ion-text-center">
-                <h4>Here you'll see the bad memories!</h4>
-              </IonText>
-            </IonCol>
-          </IonRow>
+      <IonGrid>
+          {badMemories.length <= 0 && (
+            <IonRow>
+              <IonCol className="ion-text-center">
+                <IonText>
+                  <h2>No bad memories found</h2>
+                </IonText>
+              </IonCol>
+            </IonRow>
+          )}
+          <MemoriesList items={badMemories} />
         </IonGrid>
         {isPlatform("android") && (
           <IonFab horizontal="end" vertical="bottom" slot="fixed">

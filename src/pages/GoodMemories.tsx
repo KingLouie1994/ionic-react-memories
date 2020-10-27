@@ -16,14 +16,13 @@ import {
   IonText,
   IonFab,
   IonFabButton,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
 } from "@ionic/react";
 
 import { addOutline } from "ionicons/icons";
 
 import MemoriesContext from "../data/memories-context";
+
+import MemoriesList from "../components/MemoriesList";
 
 const GoodMemories: React.FC = () => {
   const memoriesCtx = useContext(MemoriesContext);
@@ -57,18 +56,7 @@ const GoodMemories: React.FC = () => {
               </IonCol>
             </IonRow>
           )}
-          {goodMemories.map((memory) => (
-            <IonRow key={memory.id}>
-              <IonCol>
-                <IonCard>
-                  <img src={memory.base64Url} alt={memory.title} />
-                  <IonCardHeader>
-                    <IonCardTitle>{memory.title}</IonCardTitle>
-                  </IonCardHeader>
-                </IonCard>
-              </IonCol>
-            </IonRow>
-          ))}
+          <MemoriesList items={goodMemories} />
         </IonGrid>
         {isPlatform("android") && (
           <IonFab horizontal="end" vertical="bottom" slot="fixed">

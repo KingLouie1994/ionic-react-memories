@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   IonApp,
   IonRouterOutlet,
@@ -19,7 +19,7 @@ import BadMemories from "./pages/BadMemories";
 import GoodMemories from "./pages/GoodMemories";
 import NewMemory from "./pages/NewMemory";
 
-import MemoriesContextProvider from "./data/MemoriesContextProvider";
+import MemoriesContext from "./data/memories-context";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -40,10 +40,18 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <MemoriesContextProvider>
+const App: React.FC = () => {
+  const memoriesCtx = useContext(MemoriesContext);
+
+  const { initContext } = memoriesCtx;
+
+  useEffect(() => {
+    initContext();
+  }, [initContext]);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet id="main">
             <Route exact path="/good-memories">
@@ -68,9 +76,9 @@ const App: React.FC = () => (
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
-      </MemoriesContextProvider>
-    </IonReactRouter>
-  </IonApp>
-);
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
