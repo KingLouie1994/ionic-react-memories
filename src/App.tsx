@@ -19,6 +19,8 @@ import BadMemories from "./pages/BadMemories";
 import GoodMemories from "./pages/GoodMemories";
 import NewMemory from "./pages/NewMemory";
 
+import MemoriesContextProvider from "./data/MemoriesContextProvider";
+
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -42,18 +44,20 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
-        <IonRouterOutlet id="main">
-          <Route exact path="/good-memories">
-            <GoodMemories />
-          </Route>
-          <Route exact path="/bad-memories">
-            <BadMemories />
-          </Route>
-          <Route exact path="/new-memory">
-            <NewMemory />
-          </Route>
-          <Redirect to="/good-memories" />
-        </IonRouterOutlet>
+        <MemoriesContextProvider>
+          <IonRouterOutlet id="main">
+            <Route exact path="/good-memories">
+              <GoodMemories />
+            </Route>
+            <Route exact path="/bad-memories">
+              <BadMemories />
+            </Route>
+            <Route exact path="/new-memory">
+              <NewMemory />
+            </Route>
+            <Redirect to="/good-memories" />
+          </IonRouterOutlet>
+        </MemoriesContextProvider>
         <IonTabBar slot="bottom">
           <IonTabButton tab="good-memories" href="/good-memories">
             <IonIcon icon={happyOutline} />

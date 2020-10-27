@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import {
   IonHeader,
@@ -20,7 +20,15 @@ import {
 
 import { addOutline } from "ionicons/icons";
 
+import MemoriesContext from "../data/memories-context";
+
 const GoodMemories: React.FC = () => {
+  const memoriesCtx = useContext(MemoriesContext);
+
+  const goodMemories = memoriesCtx.memories.filter(
+    (memory) => memory.type === "good"
+  );
+
   return (
     <IonPage>
       <IonHeader>

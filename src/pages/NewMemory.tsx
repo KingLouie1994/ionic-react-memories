@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 
 import {
   IonHeader,
@@ -31,11 +31,15 @@ import {
 
 import { base64FromPath } from "@ionic/react-hooks/filesystem";
 
+import MemoriesContext from "../data/memories-context";
+
 import "./NewMemory.css";
 
 const { Camera, Filesystem } = Plugins;
 
 const NewMemory: React.FC = () => {
+  const memoriesCtx = useContext(MemoriesContext);
+
   const [takenPhoto, setTakenPhoto] = useState<{
     path: string;
     preview: string;
@@ -88,7 +92,7 @@ const NewMemory: React.FC = () => {
       directory: FilesystemDirectory.Data,
     });
 
-    
+    memoriesCtx.addMemory(fileName, enteredTitle.toString(), chosenMemoryType);
   };
 
   return (
