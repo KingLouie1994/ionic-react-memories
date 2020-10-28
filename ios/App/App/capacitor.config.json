@@ -1,6 +1,6 @@
 {
   "appId": "com.luisschekerka.ionicandreact",
-  "appName": "Memories",
+  "appName": "Ionic Memories",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
