@@ -13,12 +13,11 @@ import {
   IonRow,
   IonCol,
   IonText,
-  IonFab,
-  IonFabButton,
   isPlatform,
 } from "@ionic/react";
 
 import MemoriesList from "./MemoriesList";
+import FixedBottomFab from "./FixedBottomFab";
 
 import { addOutline } from "ionicons/icons";
 
@@ -57,11 +56,7 @@ const MemoriesContent: React.FC<{
           <MemoriesList items={props.memories} />
         </IonGrid>
         {isPlatform("android") && (
-          <IonFab horizontal="end" vertical="bottom" slot="fixed">
-            <IonFabButton color="primary" routerLink="/new-memory">
-              <IonIcon icon={addOutline} />
-            </IonFabButton>
-          </IonFab>
+          <FixedBottomFab link="/new-memory" icon={addOutline} />
         )}
       </IonContent>
     </IonPage>
