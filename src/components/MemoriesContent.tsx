@@ -5,9 +5,6 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonButtons,
-  IonButton,
-  IonIcon,
   IonContent,
   IonGrid,
   IonRow,
@@ -18,6 +15,7 @@ import {
 
 import MemoriesList from "./MemoriesList";
 import FixedBottomFab from "./FixedBottomFab";
+import ToolbarAction from "./ToolbarAction";
 
 import { addOutline } from "ionicons/icons";
 
@@ -34,11 +32,7 @@ const MemoriesContent: React.FC<{
         <IonToolbar>
           <IonTitle className="ion-text-center">{props.title}</IonTitle>
           {!isPlatform("android") && (
-            <IonButtons slot="end">
-              <IonButton routerLink="/new-memory">
-                <IonIcon slot="icon-only" icon={addOutline} color="red" />
-              </IonButton>
-            </IonButtons>
+            <ToolbarAction link="/new-memory" icon={addOutline} />
           )}
         </IonToolbar>
       </IonHeader>
