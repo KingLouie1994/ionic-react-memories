@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { defineCustomElements } from "@ionic/pwa-elements/loader";
 
+import * as serviceWorker from "./serviceWorker";
+
 import App from "./App";
 
 import MemoriesContextProvider from "./data/MemoriesContextProvider";
@@ -14,3 +16,5 @@ ReactDOM.render(
 );
 
 defineCustomElements(window);
+
+serviceWorker.register();
